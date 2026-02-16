@@ -7,7 +7,7 @@
     </meta>
 
     <detectors>
-        <extension priority="1.0">asm,a,s,S,inc</extension>
+        <extension priority="1.0">asm,a,s,S,inc,lib,kick,ka,src</extension>
     </detectors>
 
     <indentation>
@@ -140,7 +140,7 @@
         </collection>
 
         <collection name="opcodes">
-            <scope name="kickassembler.keyword.mnemonic">
+            <scope name="keyword">
                 <strings case-insensitive="true">
                     <string>adc</string>
                     <string>and</string>
@@ -200,12 +200,14 @@
                     <string>rts</string>
                 </strings>
             </scope>
-            <scope name="kickassembler.keyword.illegal">
+            <scope name="invalid.illegal">
                 <strings case-insensitive="true">
                     <string>aac</string>
                     <string>aax</string>
+                    <string>ahx</string>
                     <string>alr</string>
                     <string>anc</string>
+                    <string>anc2</string>
                     <string>ane</string>
                     <string>arr</string>
                     <string>aso</string>
@@ -225,6 +227,7 @@
                     <string>lae</string>
                     <string>lar</string>
                     <string>las</string>
+                    <string>lds</string>
                     <string>lax</string>
                     <string>lse</string>
                     <string>lxa</string>
@@ -232,6 +235,7 @@
                     <string>rla</string>
                     <string>rra</string>
                     <string>sax</string>
+                    <string>sbc2</string>
                     <string>sbx</string>
                     <string>skb</string>
                     <string>sha</string>
@@ -248,6 +252,109 @@
                     <string>top</string>
                     <string>xaa</string>
                     <string>xas</string>
+                </strings>
+            </scope>
+
+            <scope name="keyword">
+                <strings case-insensitive="true">
+                    <string>bra</string>
+                    <string>sac</string>
+                    <string>sir</string>
+                    <string>bbr0</string>
+                    <string>bbr1</string>
+                    <string>bbr2</string>
+                    <string>bbr3</string>
+                    <string>bbr4</string>
+                    <string>bbr5</string>
+                    <string>bbr6</string>
+                    <string>bbr7</string>
+                    <string>bbs0</string>
+                    <string>bbs1</string>
+                    <string>bbs2</string>
+                    <string>bbs3</string>
+                    <string>bbs4</string>
+                    <string>bbs5</string>
+                    <string>bbs6</string>
+                    <string>bbs7</string>
+                    <string>phx</string>
+                    <string>phy</string>
+                    <string>plx</string>
+                    <string>ply</string>
+                    <string>rmb0</string>
+                    <string>rmb1</string>
+                    <string>rmb2</string>
+                    <string>rmb3</string>
+                    <string>rmb4</string>
+                    <string>rmb5</string>
+                    <string>rmb6</string>
+                    <string>rmb7</string>
+                    <string>smb0</string>
+                    <string>smb1</string>
+                    <string>smb2</string>
+                    <string>smb3</string>
+                    <string>smb4</string>
+                    <string>smb5</string>
+                    <string>smb6</string>
+                    <string>smb7</string>
+                    <string>stp</string>
+                    <string>stz</string>
+                    <string>trb</string>
+                    <string>tsb</string>
+                    <string>wai</string>
+                </strings>
+            </scope>
+
+            <scope name="keyword">
+                <strings case-insensitive="true">
+                    <string>asw</string>
+                    <string>cle</string>
+                    <string>cpz</string>
+                    <string>dew</string>
+                    <string>dez</string>
+                    <string>eom</string>
+                    <string>inw</string>
+                    <string>inz</string>
+                    <string>lbcc</string>
+                    <string>lbcs</string>
+                    <string>lbeq</string>
+                    <string>lbmi</string>
+                    <string>lbne</string>
+                    <string>lbpl</string>
+                    <string>lbra</string>
+                    <string>lbsr</string>
+                    <string>lbvc</string>
+                    <string>lbvs</string>
+                    <string>ldz</string>
+                    <string>map</string>
+                    <string>neg</string>
+                    <string>phw</string>
+                    <string>phz</string>
+                    <string>plz</string>
+                    <string>row</string>
+                    <string>rtn</string>
+                    <string>see</string>
+                    <string>tab</string>
+                    <string>taz</string>
+                    <string>tba</string>
+                    <string>tsy</string>
+                    <string>tys</string>
+                    <string>tza</string>
+                    <string>adcq</string>
+                    <string>andq</string>
+                    <string>aslq</string>
+                    <string>asrq</string>
+                    <string>bitq</string>
+                    <string>cpq</string>
+                    <string>deq</string>
+                    <string>eorq</string>
+                    <string>inq</string>
+                    <string>ldq</string>
+                    <string>lsrq</string>
+                    <string>orq</string>
+                    <string>rolq</string>
+                    <string>rorq</string>
+                    <string>sbcq</string>
+                    <string>stq</string>
                 </strings>
             </scope>
 
@@ -288,10 +395,44 @@
             </scope>
 
             <scope name="kickassembler.processing">
-                <expression>(\.)(?i)(var|const|label|memblock|byte|word|text|dword|fill)</expression>
+                <expression>(?:^|\s)(\.)(?i)(word|wo|byte|text|te|dword|by|dw|zp|var|const|label|memblock|fill)\b</expression>
+            </scope>
+            <scope name="kickassembler.processing.arguments">
+                <expression>\b(CmdArgument)\b</expression>
+            </scope>
+            <scope name="kickassembler.processing.namespace">
+                <expression>\b(getNamespace)\b</expression>
+            </scope>
+            <scope name="kickassembler.processing.string">
+                <expression>\b(toIntString|toBinaryString|toOctalString|toHexString)\b</expression>
+            </scope>
+            <scope name="kickassembler.processing.object.method">
+                <expression>[A-Za-z0-9_)]\.([A-Za-z_][A-Za-z0-9_]+)\(</expression>
+                <capture number="1" name="kickassembler.processing.string" />
             </scope>
             <scope name="kickassembler.processing.load">
                 <expression>\b(LoadBinary|LoadPicture|LoadSid|createFile)</expression>
+            </scope>
+            <scope name="kickassembler.processing.math.3d">
+                <expression>\b(Matrix|RotationMatrix|ScaleMatrix|MoveMatrix|PerspectiveMatrix|Vector)\b</expression>
+            </scope>
+            <scope name="kickassembler.processing.field">
+                <expression>(?:^|\s)(\.)(?i)(var|label|const)\b</expression>
+            </scope>
+            <scope name="kickassembler.processing.object">
+                <expression>(?:^|\s)(\.)(?i)(struct|enum|define)\b</expression>
+            </scope>
+            <scope name="kickassembler.processing.function">
+                <expression>(?:^|\s)(\.)(?i)(eval|fill|break|print|printnow|import|align|assert|asserterror|error|errorif|lohifill|fillword)\b</expression>
+            </scope>
+            <scope name="kickassembler.processing.command">
+                <expression>(?:^|\s)(\.)(?i)(pc|importonce|pseudopc|return|cpu|disk|file|filemodify|segment|segmentdef|segmentout|memblock|modify|plugin)\b</expression>
+            </scope>
+            <scope name="kickassembler.processing.command">
+                <expression>(?:^\s*|;\s*)(\*)(?=\s*\=\s*)</expression>
+            </scope>
+            <scope name="kickassembler.processing.encoding">
+                <expression>(?:^|\s)(\.)(?i)(encoding)\b</expression>
             </scope>
             <scope name="kickassembler.processing.import">
                 <expression>(\#)(?i)(importif|importonce|import)</expression>
@@ -309,31 +450,52 @@
 
         <collection name="processing">
             <scope name="kickassembler.definition.method">
-                <expression>(?:^|\s)((\.pseudocommand)\s*([A-Za-z_][A-Za-z0-9_]*))\b</expression>
+                <expression>(?:^\s*|;\s*)((\.pseudocommand)\s*(\@*[A-Za-z_][A-Za-z0-9_]*))\b</expression>
                 <capture number="2" name="kickassembler.processing.command" />
                 <capture number="3" name="kickassembler.identifier.function.name" />
             </scope>
 
             <scope name="kickassembler.definition.method">
-                <expression>(?:^|\s)((\.function)\s*([A-Za-z_][A-Za-z0-9_]*))\b</expression>
+                <expression>(?:^\s*|;\s*)((\.function)\s*(\@*[A-Za-z_][A-Za-z0-9_]*))\b</expression>
                 <capture number="2" name="kickassembler.processing.command" />
                 <capture number="3" name="kickassembler.identifier.function.name" />
             </scope>
 
             <scope name="kickassembler.definition.macro">
-                <expression>(?:^|\s)((\.macro)\s*([A-Za-z_][A-Za-z0-9_]*))\b</expression>
+                <expression>(?:^\s*|;\s*)((\.macro)\s*(\@*[A-Za-z_][A-Za-z0-9_]*))\b</expression>
                 <capture number="2" name="kickassembler.processing.command" />
                 <capture number="3" name="kickassembler.identifier.function.name" />
             </scope>
 
             <scope name="kickassembler.definition.class">
-                <expression>(?:^|\s)((\.namespace)\s*([A-Za-z_][A-Za-z0-9_]*))\b</expression>
+                <expression>(?:^\s*|;\s*)((\.filenamespace)\s*([A-Za-z_][A-Za-z0-9_]*))\b</expression>
                 <capture number="2" name="kickassembler.processing.command" />
                 <capture number="3" name="kickassembler.identifier.type.class" />
+            </scope>
+            <scope name="kickassembler.definition.class">
+                <expression>(?:^\s*|;\s*)((\.namespace)\s*([A-Za-z_][A-Za-z0-9_]*))\b</expression>
+                <capture number="2" name="kickassembler.processing.command" />
+                <capture number="3" name="kickassembler.identifier.type.class" />
+            </scope>
+            <scope name="kickassembler.keyword.control.for">
+                <expression>(?:^|\s)(\.for)\s*\(\s*(var)?</expression>
+                <capture number="1" name="kickassembler.keyword.control" />
+                <capture number="2" name="kickassembler.processing.field" />
+            </scope>
+            <scope name="kickassembler.keyword.control.if">
+                <expression>(?:^|\s)((\.if)\b|(else)\b)</expression>
+                <capture number="1" name="kickassembler.keyword.control" />
+            </scope>
+            <scope name="kickassembler.keyword.control.while">
+                <expression>(?:^|\s)(\.while)(?=\s*\(.*\))</expression>
+                <capture number="1" name="kickassembler.keyword.control" />
             </scope>
         </collection>
 
         <collection name="constants">
+            <scope name="kickassembler.constant.language.boolean">
+                <expression>\b(true|false)\b</expression>
+            </scope>
             <scope name="kickassembler.value.number.colour">
                 <expression>\#?(BLACK|WHITE|RED|CYAN|PURPLE|GREEN|BLUE|YELLOW|ORANGE|BROWN|LIGHT_RED|DARK_GRAY|GRAY|DARK_GREY|GREY|LIGHT_GREEN|LIGHT_BLUE|LIGHT_GRAY|LIGHT_GREY)\b</expression>
             </scope>
@@ -347,6 +509,23 @@
                     <string>BF_KOALA</string>
                     <string>BF_FLI</string>
                 </strings>
+            </scope>
+            <scope name="kickassembler.identifier.constant.cpu">
+                <expression>\b(_6502NoIllegals|_6502|dtv|_65c02|_65ce02|_45gs02)\b</expression>
+            </scope>
+            <scope name="kickassembler.identifier.constant.pseudocommand">
+                <expression>\b(AT_ABSOLUTE|AT_ABSOLUTEX|AT_ABSOLUTEY|AT_IMMEDIATE|AT_INDIRECT|AT_IZEROPAGEX|AT_IZEROPAGEY|AT_NONE)\b</expression>
+            </scope>
+            <scope name="kickassembler.identifier.constant.math">
+                <expression>\b(PI|E)\b</expression>
+            </scope>
+            <scope name="kickassembler.identifier.type.hashtable">
+                <expression>\b(Hashtable)\b</expression>
+            </scope>
+            <scope name="kickassembler.identifier.type.list">
+                <expression>\b(list|List)\(\s*(\$?\d+)*\s*\)</expression>
+                <capture number="1" name="kickassembler.identifier.type.list" />
+                <capture number="2" name="kickassembler.value.number" />
             </scope>
         </collection>
 
