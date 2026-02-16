@@ -75,7 +75,7 @@
 
         <collection name="operators">
             <scope name="kickassembler.operator.numeric">
-                <strings case-insensitive="true">
+                <strings case-insensitive="true" word-boundary="false">
                     <string>-</string>
                     <string>+</string>
                     <string>*</string>
@@ -124,7 +124,7 @@
 
         <collection name="labels">
             <scope name="kickassembler.identifier.function.name">
-                <expression>^\s*(((!)|(!?([A-Za-z_][A-Za-z0-9_]*)+))\:)</expression>
+                <expression>(?:^\s*|;\s*)(((!)|(!?(@*[A-Za-z_][A-Za-z0-9_]*)+))\:)</expression>
             </scope>
         </collection>
 
@@ -135,7 +135,7 @@
 
             <scope name="kickassembler.identifier.variable">
                 <symbol type="variable" scope="local" />
-                <expression>([A-Za-z_@!][A-Za-z0-9_\.]*)(\+|\-)?</expression>
+                <expression>(?&lt;![A-Za-z0-9_\.])([@!]*[A-Za-z_][A-Za-z0-9_\.]*)(\+|\-)?(?![A-Za-z0-9_\.])</expression>
             </scope>
         </collection>
 
@@ -310,26 +310,26 @@
         <collection name="processing">
             <scope name="kickassembler.definition.method">
                 <expression>(?:^|\s)((\.pseudocommand)\s*([A-Za-z_][A-Za-z0-9_]*))\b</expression>
-                <capture number="1" name="kickassembler.processing.command" />
-                <capture number="2" name="kickassembler.identifier.function.name" />
+                <capture number="2" name="kickassembler.processing.command" />
+                <capture number="3" name="kickassembler.identifier.function.name" />
             </scope>
 
             <scope name="kickassembler.definition.method">
                 <expression>(?:^|\s)((\.function)\s*([A-Za-z_][A-Za-z0-9_]*))\b</expression>
-                <capture number="1" name="kickassembler.processing.command" />
-                <capture number="2" name="kickassembler.identifier.function.name" />
+                <capture number="2" name="kickassembler.processing.command" />
+                <capture number="3" name="kickassembler.identifier.function.name" />
             </scope>
 
             <scope name="kickassembler.definition.macro">
                 <expression>(?:^|\s)((\.macro)\s*([A-Za-z_][A-Za-z0-9_]*))\b</expression>
-                <capture number="1" name="kickassembler.processing.command" />
-                <capture number="2" name="kickassembler.identifier.function.name" />
+                <capture number="2" name="kickassembler.processing.command" />
+                <capture number="3" name="kickassembler.identifier.function.name" />
             </scope>
 
             <scope name="kickassembler.definition.class">
                 <expression>(?:^|\s)((\.namespace)\s*([A-Za-z_][A-Za-z0-9_]*))\b</expression>
-                <capture number="1" name="kickassembler.processing.command" />
-                <capture number="2" name="kickassembler.identifier.type.class" />
+                <capture number="2" name="kickassembler.processing.command" />
+                <capture number="3" name="kickassembler.identifier.type.class" />
             </scope>
         </collection>
 
@@ -341,7 +341,7 @@
                 <expression>\#?(LDA_IMM|LDA_ZP|LDA_ZPX|LDX_ZPY|LDA_IZPX|LDA_IZPY|LDA_ABS|LDA_ABSX|LDA_ABSY|JMP_IND|BNE_REL|RTS)\b</expression>
             </scope>
             <scope name="kickassembler.identifier.constant.filetype">
-                <strings case-insentitive="false">
+                <strings case-insensitive="false">
                     <string>BF_C64FILE</string>
                     <string>BF_BITMAP_SINGLECOLOR</string>
                     <string>BF_KOALA</string>
