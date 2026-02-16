@@ -5,6 +5,6 @@
     "description": "Syntax highlighting for Kick Assembler and 6510 assembly language for the Commodore 64.",
     "repository": "https://github.com/chrx/KickAssembler-Nova-Extension",
     "bugs": "https://github.com/chrx/KickAssembler-Nova-Extension/issues",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "categories": ["languages"]
 }

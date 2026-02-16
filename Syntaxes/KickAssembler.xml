@@ -495,7 +495,7 @@
                 <expression>\#?(BLACK|WHITE|RED|CYAN|PURPLE|GREEN|BLUE|YELLOW|ORANGE|BROWN|LIGHT_RED|DARK_GRAY|GRAY|DARK_GREY|GREY|LIGHT_GREEN|LIGHT_BLUE|LIGHT_GRAY|LIGHT_GREY)\b</expression>
             </scope>
             <scope name="kickassembler.value.number.opcodetype">
-                <expression>\#?(?:[A-Z][A-Z0-9]{2,3}(?:_(?:IMM|ZP|ZPX|ZPY|IZPX|IZPY|ABS|ABSX|ABSY|IND|REL))?)\b</expression>
+                <expression>\#?(?:ADC|AND|ASL|BIT|CLC|CLD|CLI|CLV|CMP|CPX|CPY|DEC|DEX|DEY|EOR|INC|INX|INY|LDA|LDX|LDY|LSR|NOP|ORA|PHA|PHP|PLA|PLP|ROL|ROR|SBC|SEC|SED|SEI|STA|STX|STY|TAX|TXA|TAY|TYA|TSX|TXS|BCC|BCS|BEQ|BMI|BNE|BPL|BRK|BVC|BVS|JMP|JSR|RTI|RTS)(?:_(?:IMM|ZP|ZPX|ZPY|IZPX|IZPY|ABS|ABSX|ABSY|IND|REL))?\b</expression>
             </scope>
             <scope name="kickassembler.identifier.constant.filetype">
                 <strings case-insensitive="false">
