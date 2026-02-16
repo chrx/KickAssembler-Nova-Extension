@@ -117,12 +117,12 @@
 
         <collection name="symbols">
             <scope name="kickassembler.value.number.immediate">
-                <expression>\#([A-Za-z_@!][A-Za-z0-9_\.]*)</expression>
+                <expression>\#([A-Za-z_@!][A-Za-z0-9_]*(?:\.[A-Za-z_][A-Za-z0-9_]*)*)\b</expression>
             </scope>
 
             <scope name="kickassembler.identifier.variable">
                 <symbol type="variable" scope="local" />
-                <expression>([@!]*[A-Za-z_][A-Za-z0-9_\.]*)(\+|\-)?</expression>
+                <expression>([@!]*[A-Za-z_][A-Za-z0-9_]*(?:\.[A-Za-z_][A-Za-z0-9_]*)*)(\+|\-)?\b</expression>
             </scope>
         </collection>
 
