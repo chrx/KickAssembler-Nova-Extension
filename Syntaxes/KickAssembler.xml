@@ -75,7 +75,7 @@
 
         <collection name="operators">
             <scope name="kickassembler.operator.numeric">
-                <expression>(&lt;&lt;|&gt;&gt;|[-+*/&lt;&gt;&amp;|^~])</expression>
+                <expression>(\|\||==|!=|&lt;=|&gt;=|&amp;&amp;|&lt;&lt;|&gt;&gt;|[-+*/%&lt;&gt;&amp;|^~!])</expression>
             </scope>
         </collection>
 
@@ -424,6 +424,11 @@
             <scope name="kickassembler.processing.import">
                 <expression>(\#)(?i)(importif|importonce|import)</expression>
             </scope>
+            <scope name="kickassembler.processing.import.mode">
+                <expression>(?:^|\s)((\.import)\s+(?i)(binary|c64|source|text))\b</expression>
+                <capture number="2" name="kickassembler.processing.command" />
+                <capture number="3" name="kickassembler.processing.import.mode" />
+            </scope>
             <scope name="kickassembler.keyword.preprocessor">
                 <expression>(\#)(?i)(undef|define|if|else|elif|endif)</expression>
             </scope>
@@ -483,11 +488,14 @@
             <scope name="kickassembler.constant.language.boolean">
                 <expression>\b(true|false)\b</expression>
             </scope>
+            <scope name="kickassembler.constant.language.null">
+                <expression>\b(null)\b</expression>
+            </scope>
             <scope name="kickassembler.value.number.colour">
                 <expression>\#?(BLACK|WHITE|RED|CYAN|PURPLE|GREEN|BLUE|YELLOW|ORANGE|BROWN|LIGHT_RED|DARK_GRAY|GRAY|DARK_GREY|GREY|LIGHT_GREEN|LIGHT_BLUE|LIGHT_GRAY|LIGHT_GREY)\b</expression>
             </scope>
             <scope name="kickassembler.value.number.opcodetype">
-                <expression>\#?(LDA_IMM|LDA_ZP|LDA_ZPX|LDX_ZPY|LDA_IZPX|LDA_IZPY|LDA_ABS|LDA_ABSX|LDA_ABSY|JMP_IND|BNE_REL|RTS)\b</expression>
+                <expression>\#?(?:[A-Z][A-Z0-9]{2,3}(?:_(?:IMM|ZP|ZPX|ZPY|IZPX|IZPY|ABS|ABSX|ABSY|IND|REL))?)\b</expression>
             </scope>
             <scope name="kickassembler.identifier.constant.filetype">
                 <strings case-insensitive="false">
@@ -495,6 +503,7 @@
                     <string>BF_BITMAP_SINGLECOLOR</string>
                     <string>BF_KOALA</string>
                     <string>BF_FLI</string>
+                    <string>BF_DOODLE</string>
                 </strings>
             </scope>
             <scope name="kickassembler.identifier.constant.cpu">

@@ -8,4 +8,4 @@ Added missing illegal opcodes, operator fixes, data directives, string matching 
 
 ## Version 0.0.3
 
-Small fix for symbol matching.
+Added missing operators, import modes, null and BF_DOODLE constants, improved opcode matching and a small fix for symbol matching.
