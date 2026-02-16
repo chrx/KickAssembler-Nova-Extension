@@ -75,20 +75,7 @@
 
         <collection name="operators">
             <scope name="kickassembler.operator.numeric">
-                <strings case-insensitive="true" word-boundary="false">
-                    <string>-</string>
-                    <string>+</string>
-                    <string>*</string>
-                    <string>/</string>
-                    <string>&lt;</string>
-                    <string>&gt;</string>
-                    <string>&lt;&lt;</string>
-                    <string>&gt;&gt;</string>
-                    <string>&amp;</string>
-                    <string>|</string>
-                    <string>^</string>
-                    <string>~</string>
-                </strings>
+                <expression>(&lt;&lt;|&gt;&gt;|[-+*/&lt;&gt;&amp;|^~])</expression>
             </scope>
         </collection>
 
@@ -135,7 +122,7 @@
 
             <scope name="kickassembler.identifier.variable">
                 <symbol type="variable" scope="local" />
-                <expression>(?&lt;![A-Za-z0-9_\.])([@!]*[A-Za-z_][A-Za-z0-9_\.]*)(\+|\-)?(?![A-Za-z0-9_\.])</expression>
+                <expression>([@!]*[A-Za-z_][A-Za-z0-9_\.]*)(\+|\-)?</expression>
             </scope>
         </collection>
 
@@ -450,19 +437,19 @@
 
         <collection name="processing">
             <scope name="kickassembler.definition.method">
-                <expression>(?:^\s*|;\s*)((\.pseudocommand)\s*(\@*[A-Za-z_][A-Za-z0-9_]*))\b</expression>
+                <expression>(?:^\s*|;\s*)((\.pseudocommand)\s*(@*[A-Za-z_][A-Za-z0-9_]*))\b</expression>
                 <capture number="2" name="kickassembler.processing.command" />
                 <capture number="3" name="kickassembler.identifier.function.name" />
             </scope>
 
             <scope name="kickassembler.definition.method">
-                <expression>(?:^\s*|;\s*)((\.function)\s*(\@*[A-Za-z_][A-Za-z0-9_]*))\b</expression>
+                <expression>(?:^\s*|;\s*)((\.function)\s*(@*[A-Za-z_][A-Za-z0-9_]*))\b</expression>
                 <capture number="2" name="kickassembler.processing.command" />
                 <capture number="3" name="kickassembler.identifier.function.name" />
             </scope>
 
             <scope name="kickassembler.definition.macro">
-                <expression>(?:^\s*|;\s*)((\.macro)\s*(\@*[A-Za-z_][A-Za-z0-9_]*))\b</expression>
+                <expression>(?:^\s*|;\s*)((\.macro)\s*(@*[A-Za-z_][A-Za-z0-9_]*))\b</expression>
                 <capture number="2" name="kickassembler.processing.command" />
                 <capture number="3" name="kickassembler.identifier.function.name" />
             </scope>
